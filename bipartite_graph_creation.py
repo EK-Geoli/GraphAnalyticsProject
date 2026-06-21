@@ -11,7 +11,7 @@ MIN_READERS_PER_BOOK = 100
 MIN_CO_READERS = 0  # CR placeholder to keep the exact same filename structure
 
 # --- VISUALIZATION LIMITS (Only for display purposes) ---
-DISPLAY_TOP_USERS = 10
+DISPLAY_TOP_USERS = 7
 DISPLAY_TOP_BOOKS = 20
 
 
@@ -122,7 +122,7 @@ if B_all and B_all.number_of_edges() > 0:
                                        edge_color=edge_ratings,
                                        edge_cmap=plt.cm.RdYlGn,
                                        edge_vmin=0.0, edge_vmax=10.0,
-                                       width=2.5, alpha=0.7)
+                                       width=1, alpha=0.7)
 
         sm = plt.cm.ScalarMappable(cmap=plt.cm.RdYlGn, norm=plt.Normalize(vmin=0, vmax=10))
         sm.set_array([])

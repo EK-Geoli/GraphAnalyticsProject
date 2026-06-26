@@ -21,7 +21,7 @@ from neighbors_recommendation import (
 )
 
 WEIGHTS_PATH = default_weights_path()
-GRAPH_FILENAME = "book_graph_B5_R100_CR0.pkl"
+GRAPH_FILENAME = "bipartite_graph_B5_R100_CR0.pkl"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 

@@ -26,7 +26,7 @@ def build_rec_filename(
 
 
 def build_neighbor_rec_matrix(
-    graph_filename: str = "book_graph_B5_R100_CR0.pkl",
+    graph_filename: str = "bipartite_graph_B5_R100_CR0.pkl",
     method: str = DEFAULT_METHOD,
     min_common: int = DEFAULT_MIN_COMMON,
     centered: bool = DEFAULT_CENTERED,
@@ -106,15 +106,16 @@ def build_neighbor_rec_matrix(
     sum_abs_weights = np.array(np.abs(W).sum(axis=1)).flatten()
     print(f"[neighbors] Weight matrix W built: nnz={W.nnz}")
 
-    # Center ratings efficiently: subtract user_means from their nonzero entries
+    # Proposed implementation (Thresholding at 5)
+    THRESHOLD = 5.5
     R_centered = R.copy().tolil()
     for u in range(num_users):
         if user_counts[u] == 0:
             continue
         if len(R_centered.rows[u]) == 0:
             continue
-        R_centered.data[u] = [val - user_means[u] for val in R_centered.data[u]]
-    R_centered = R_centered.tocsr()
+        # Subtracting 5.5 ensures 1-5 are negative, and 6-10 are positive
+        R_centered.data[u] = [val - THRESHOLD for val in R_centered.data[u]]
 
     # Compute raw scores: S = W * R_centered  (num_users x num_books) sparse result
     S_sparse = W.dot(R_centered)
@@ -153,7 +154,7 @@ def get_neighbor_recs_for_user(
     original_user_id,
     top_k: int = 10,
     exclude_seen: bool = True,
-    graph_filename: str = "book_graph_B5_R100_CR0.pkl",
+    graph_filename: str = "bipartite_graph_B5_R100_CR0.pkl",
     rec_matrix_path: str = None,
 ) -> List[Tuple[str, float]]:
     """

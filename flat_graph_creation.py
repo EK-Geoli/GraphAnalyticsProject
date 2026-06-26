@@ -16,7 +16,7 @@ DISPLAY_TOP_BOOKS = 20  # Display only the top N most central books
 def load_or_compute_graph(b_per_u, r_per_b):
     """Reloads the full graph from disk if parameters match, otherwise computes it."""
     # Removed CR entirely from the filename structure
-    filename = f"book_graph_B{b_per_u}_R{r_per_b}.pkl"
+    filename = f"flat_graph_B{b_per_u}_R{r_per_b}.pkl"
 
     if os.path.exists(filename):
         print(f">>> Loading full cached flattened graph from {filename}...")
@@ -81,6 +81,9 @@ def load_or_compute_graph(b_per_u, r_per_b):
     # 5. Label with Titles
     isbn_to_title = dict(zip(books['ISBN'], books['Book-Title']))
     G_full = nx.relabel_nodes(G_full, {isbn: isbn_to_title.get(isbn, isbn) for isbn in G_full.nodes()})
+
+    # Kill the phantom self-loops created by ISBN-to-Title collisions
+    G_full.remove_edges_from(nx.selfloop_edges(G_full))
 
     # 6. Save Complete Graph Array
     if G_full.number_of_edges() > 0:

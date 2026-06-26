@@ -17,7 +17,7 @@ DISPLAY_TOP_BOOKS = 20
 
 def load_or_compute_bipartite(b_per_u, r_per_b, co_r):
     """Computes and saves the complete Bipartite graph across the whole dataset."""
-    filename = f"book_graph_B{b_per_u}_R{r_per_b}_CR{co_r}.pkl"
+    filename = f"bipartite_graph_B{b_per_u}_R{r_per_b}_CR{co_r}.pkl"
 
     if os.path.exists(filename):
         print(f">>> Loading complete cached bipartite graph from {filename}...")

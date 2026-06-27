@@ -7,7 +7,7 @@ import pickle
 
 # --- CONFIGURABLE FILTERS (For full graph generation & file naming) ---
 MIN_BOOKS_PER_USER = 5
-MIN_READERS_PER_BOOK = 100
+MIN_READERS_PER_BOOK = 10
 
 # --- VISUALIZATION LIMITS (Only for display purposes) ---
 DISPLAY_TOP_BOOKS = 20  # Display only the top N most central books

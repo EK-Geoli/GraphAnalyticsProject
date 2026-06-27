@@ -7,7 +7,7 @@ import pickle
 
 # --- CONFIGURABLE FILTERS (For full graph generation) ---
 MIN_BOOKS_PER_USER = 5
-MIN_READERS_PER_BOOK = 100
+MIN_READERS_PER_BOOK = 10
 MIN_CO_READERS = 0  # CR placeholder to keep the exact same filename structure
 
 # --- VISUALIZATION LIMITS (Only for display purposes) ---

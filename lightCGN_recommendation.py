@@ -11,7 +11,7 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 
 # --- CONFIGURATION ---
-GRAPH_FILENAME = "bipartite_graph_B5_R100_CR0.pkl"
+GRAPH_FILENAME = "bipartite_graph_B5_R10_CR0.pkl"
 EMBEDDING_DIM = 64
 NUM_LAYERS = 3  # K-layers of LightGCN propagation
 LEARNING_RATE = 0.005
